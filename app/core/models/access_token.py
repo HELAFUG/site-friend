@@ -6,12 +6,14 @@ from fastapi_users_db_sqlalchemy.access_token import (
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey, Integer
 
+from core.models import Base
+
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
     from .user import User
 
 
-class AccessToken(SQLAlchemyAccessTokenDatabase):
+class AccessToken(Base, SQLAlchemyAccessTokenDatabase):
     user_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False
     )
