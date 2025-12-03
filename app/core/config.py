@@ -41,10 +41,17 @@ class APIConfig(BaseModel):
         return path.removeprefix("/")
 
 
+class AccessToken(BaseModel):
+    lifetime_seconds: int = 3600
+    reset_password_token_secret: str = getenv("RESET_PASSWORD_TOKEN_SECRET")
+    verification_token_secret: str = getenv("VERIFICATION_TOKEN_SECRET")
+
+
 class Settings(BaseSettings):
     db: DBConfig = DBConfig()
     srv: SRVConfig = SRVConfig()
     api: APIConfig = APIConfig()
+    access_token: AccessToken = AccessToken()
 
 
 settings = Settings()
