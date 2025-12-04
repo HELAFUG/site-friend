@@ -3,13 +3,18 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from core.helpers import db_helper
 from core.config import settings
+from core import broker
 from api import api_router
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    if not broker.is_worker_process:
+        await broker.startup()
     yield
     await db_helper.dispose()
+    if not broker.is_worker_process:
+        await broker.shutdown()
 
 
 app = FastAPI(lifespan=lifespan)
