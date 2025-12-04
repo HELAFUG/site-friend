@@ -47,11 +47,17 @@ class AccessToken(BaseModel):
     verification_token_secret: str = getenv("VERIFICATION_TOKEN_SECRET")
 
 
+class AdminConfig(BaseModel):
+    email: str = getenv("ADMIN_EMAIL")
+    password: str = getenv("ADMIN_PASSWORD")
+
+
 class Settings(BaseSettings):
     db: DBConfig = DBConfig()
     srv: SRVConfig = SRVConfig()
     api: APIConfig = APIConfig()
     access_token: AccessToken = AccessToken()
+    admin: AdminConfig = AdminConfig()
 
 
 settings = Settings()
