@@ -20,6 +20,12 @@ class DBConfig(BaseModel):
     }
 
 
+class LogSetting(BaseModel):
+    log_level: str = "INFO"
+    log_format: str = LOG_DEFAULT_FORMAT
+    datefmt: str = "%Y-%m-%d %H:%M:%S"
+
+
 class SRVConfig(BaseModel):
     host: str = "0.0.0.0"
     port: int = 8040
