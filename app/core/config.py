@@ -26,6 +26,10 @@ class LogSetting(BaseModel):
     datefmt: str = "%Y-%m-%d %H:%M:%S"
 
 
+class TaskIQConfig(BaseModel):
+    url: str = getenv("TASKIQ_URL", "amqp://guest:guest@localhost:15672//")
+
+
 class SRVConfig(BaseModel):
     host: str = "0.0.0.0"
     port: int = 8040
