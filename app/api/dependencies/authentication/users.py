@@ -10,6 +10,6 @@ if TYPE_CHECKING:
 
 
 async def get_users_db(
-    session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
+    session: Annotated["AsyncSession", Depends(db_helper.session_getter)],
 ):
     yield User.get_db(session)

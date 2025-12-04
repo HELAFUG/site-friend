@@ -20,7 +20,7 @@ class DBConfig(BaseModel):
 
 class SRVConfig(BaseModel):
     host: str = "0.0.0.0"
-    port: int = 8080
+    port: int = 8040
     reload_on_save: bool = True
 
 
