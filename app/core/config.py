@@ -70,7 +70,7 @@ class Settings(BaseSettings):
     api: APIConfig = APIConfig()
     access_token: AccessToken = AccessToken()
     admin: AdminConfig = AdminConfig()
-    log: LogSetting = LogSetting()
+    logging: LogSetting = LogSetting()
     taskiq: TaskIQConfig = TaskIQConfig()
 
 
