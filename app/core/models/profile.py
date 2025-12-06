@@ -21,4 +21,4 @@ class Profile(Base, IdIntPkMixin):
     available: Mapped[bool]
     wish_to_walk: Mapped[int]
     preority: Mapped[int]
-    week_shedule: Mapped["Shedule"] = relationship(back_populates="profile")
+    shedule: Mapped["Shedule"] = relationship(back_populates="profile")

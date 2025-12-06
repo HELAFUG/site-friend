@@ -7,10 +7,12 @@ from core.models.mixins import IdIntPkMixin
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
     from .access_token import AccessToken
+    from .profile import Profile
 
 
 class User(Base, IdIntPkMixin, SQLAlchemyBaseUserTable[int]):
     access_tokens: Mapped[list["AccessToken"]] = relationship(back_populates="user")
+    profile: Mapped["Profile"] = relationship(back_populates="user")
 
     @classmethod
     def get_db(cls, session: "AsyncSession"):
