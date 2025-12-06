@@ -13,6 +13,10 @@ const Register = () => {
         try {
             const response = await registerUser({ email, password });
             setMessage(`Registration successful: ${response.message}`);
+            if (response.status === 400) {
+                setMessage(response.message);
+                
+            }
         } catch (error) {
             console.error('Error during registration:', error);
             setMessage('Registration failed. Please try again.');
@@ -20,15 +24,14 @@ const Register = () => {
     };
 
     return (
-        <form onSubmit={handleRegister} className="space-y-4">
-            <h2 className="text-lg font-bold">Register</h2>
+        <form onSubmit={handleRegister} className="container">
+            <h2>Register</h2>
             <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="border p-2 w-full"
             />
             <input
                 type="password"
@@ -36,10 +39,9 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
-                className="border p-2 w-full"
             />
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded">Register</button>
-            {message && <p>{message}</p>}
+            <button type="submit">Register</button>
+            {message && <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>{message}</p>}
         </form>
     );
 };
