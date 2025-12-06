@@ -1,13 +1,14 @@
+/* src/index.css */
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: #f3f4f6; /* Light background color */
+    font-family: Arial, sans-serif; /* Font style */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input {
+    border-radius: 4px; /* Rounded edges for input fields */
+}
+
+button {
+    border-radius: 4px; /* Rounded edges for buttons */
 }
