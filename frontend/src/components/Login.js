@@ -7,11 +7,14 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-
+    const [grant_type, setGrantType] = useState('password');
+    const [scope, setScope] = useState('read write');
+    const [client_id, setClientId] = useState('client');
+    const [client_secret, setClientSecret] = useState('secret');
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await loginUser({ email, password });
+            const response = await loginUser({ email, password, grant_type, scope, client_id, client_secret ,});
             setMessage(`Login successful: ${response.message}`);
         } catch (error) {
             console.error('Error during login:', error);
