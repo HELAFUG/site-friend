@@ -8,7 +8,7 @@ from core.models import User
 from core.auth.user_manager import UserManager
 from core.schemas.user import UserCreate
 from core.helpers import db_helper
-
+from tasks import send_welcome_admin
 
 get_users_db_context = contextlib.asynccontextmanager(get_users_db)
 get_user_manager_context = contextlib.asynccontextmanager(get_user_manager)
@@ -47,7 +47,9 @@ async def create_superuser(
     async with db_helper.session_factory() as session:
         async with get_users_db_context(session) as users_db:
             async with get_user_manager_context(users_db) as user_manager:
-                return await create_user(user_manager, user_create)
+                user = await create_user(user_manager, user_create)
+                await send_welcome_admin.kiq(user_id=user.id)
+                return user
 
 
 if __name__ == "__main__":
